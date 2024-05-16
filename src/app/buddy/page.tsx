@@ -7,7 +7,7 @@ import firstDate from "src/app/helpers/firstDay.json";
 import { calculateDateDifference, createFakeDate } from "../helpers/functions";
 
 export default function Buddy() {
-  const [exerciseData, setExerciseData] = useState(exerciseList);
+  const [exerciseData, setExerciseData] = useState(exerciseList.exerciseData);
 
   let currentDate = new Date();
   currentDate.setHours(0, 0, 0, 0);
@@ -16,8 +16,24 @@ export default function Buddy() {
   const [dateDifference, setDateDifference] = useState(
     calculateDateDifference(new Date(originalDate), currentDate),
   );
-  const saveState = () => {
-    console.log("saveState");
+  const saveState = async () => {
+    try {
+      const response = await fetch("/api/status/route", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ exerciseData }),
+      });
+
+      if (response.ok) {
+        console.log("Data saved successfully");
+      } else {
+        console.error("Failed to save data");
+      }
+    } catch (error) {
+      console.error("Error saving data:", error);
+    }
   };
 
   const setStart = async (date: Date) => {
@@ -35,10 +51,13 @@ export default function Buddy() {
         console.log("Data saved successfully");
         if (currentDate === date) {
           setDateDifference(0);
-        } else {
+        } else if (date !== startDate) {
           let newDateDifference = calculateDateDifference(
             startDate,
             currentDate,
+          );
+          alert(
+            `Current Date: ${currentDate}, Date: ${date}, Start Date: ${startDate}, DATE DIFFERENCE: ${newDateDifference}`,
           );
           setDateDifference(newDateDifference);
         }
@@ -85,6 +104,8 @@ export default function Buddy() {
         <DayList
           exerciseData={exerciseData}
           setExerciseData={setExerciseData}
+          currentDate={currentDate}
+          dateDifference={dateDifference}
         />
       </div>
     </main>

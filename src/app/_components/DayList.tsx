@@ -1,19 +1,22 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { daysOfWeek } from "../helpers/helperObjects";
 import DayColumn from "./DayColumn";
 
 type DayListProps = {
   exerciseData: Object;
   setExerciseData: Function;
+  currentDate: Date;
+  dateDifference: number;
 };
 
 export default function DayList({
   exerciseData,
   setExerciseData,
+  currentDate,
+  dateDifference,
 }: DayListProps) {
-  const date = new Date();
-  let currentDay = date.getDay();
+  let currentDay = currentDate.getDay();
   const dayList = [];
 
   for (let i = 0; i < 7; i++) {
@@ -25,9 +28,15 @@ export default function DayList({
   }
 
   const dayDisplay = dayList.map((element, index) => {
+    const exerciseIndex = index + dateDifference;
     return (
       <div key={index}>
-        <DayColumn day={element || "Sunday"} exerciseIndex={index} />
+        <DayColumn
+          day={element || "Sunday"}
+          exerciseIndex={exerciseIndex}
+          exerciseData={exerciseData}
+          setExerciseData={setExerciseData}
+        />
       </div>
     );
   });
