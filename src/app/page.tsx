@@ -14,12 +14,20 @@ export default async function Home() {
         <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
           Create <span className="text-[hsl(280,100%,70%)]">T3</span> App
         </h1>
-        <Link
-          href="/buddy"
-          className="rounded-lg border-2 border-yellow-400 p-3 text-3xl text-yellow-400 transition-all hover:scale-110 hover:shadow-xl hover:shadow-yellow-200"
-        >
-          Click Here
-        </Link>
+        <div>
+          <Link
+            href="/buddy"
+            className="m-2 rounded-lg border-2 border-yellow-400 p-3 text-3xl text-yellow-400 transition-all hover:scale-110 hover:shadow-xl hover:shadow-yellow-200"
+          >
+            Buddy
+          </Link>
+          <Link
+            href="/input"
+            className="m-2 rounded-lg border-2 border-yellow-400 p-3 text-3xl text-yellow-400 transition-all hover:scale-110 hover:shadow-xl hover:shadow-yellow-200"
+          >
+            Input
+          </Link>
+        </div>
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
           <Link

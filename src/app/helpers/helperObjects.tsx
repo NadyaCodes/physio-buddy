@@ -7,3 +7,10 @@ export const daysOfWeek = [
   "Friday",
   "Saturday",
 ];
+
+export const blankExercise = {
+  exercise: "",
+  frequency: 1,
+  start: 1,
+  color: "",
+};

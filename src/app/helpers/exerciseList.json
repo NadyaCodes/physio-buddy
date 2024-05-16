@@ -1,16 +1,1 @@
-{
-  "exerciseData": {
-    "0": { "Calf": false, "Calf2": false },
-    "1": { "Leg": false },
-    "2": { "Calf": true },
-    "3": { "Leg": true },
-    "4": { "Calf": true },
-    "5": { "Leg": false },
-    "6": { "Calf": false },
-    "7": { "Leg": false },
-    "8": { "Calf": false },
-    "9": { "Leg": false },
-    "10": { "Calf": false },
-    "11": { "Leg": false }
-  }
-}
+{"exerciseData":{"1":{"Arm2":{"status":false,"color":"pink"},"Arm3":{"status":false,"color":"green"}},"2":{"Arm2":{"status":false,"color":"pink"},"lkjh":{"status":false,"color":"green"}},"3":{"Arm2":{"status":false,"color":"pink"},"Arm3":{"status":false,"color":"green"},"Bike":{"status":false,"color":"pink"},"Ballow":{"status":false,"color":"blue"},"New":{"status":false,"color":"pink"},"lkjh":{"status":false,"color":"green"}},"4":{"Arm2":{"status":false,"color":"pink"},"Lets":{"status":false,"color":"purple"},"lkjh":{"status":false,"color":"green"}},"5":{"Arm2":{"status":false,"color":"pink"},"Arm3":{"status":false,"color":"green"},"Ballow":{"status":false,"color":"blue"},"New":{"status":false,"color":"pink"},"lkjh":{"status":false,"color":"green"}},"6":{"Arm2":{"status":false,"color":"pink"},"Lets":{"status":false,"color":"purple"},"lkjh":{"status":false,"color":"green"}},"7":{"Arm2":{"status":false,"color":"pink"},"Arm3":{"status":false,"color":"green"},"Ballow":{"status":false,"color":"blue"},"New":{"status":false,"color":"pink"},"lkjh":{"status":false,"color":"green"}},"8":{"Arm2":{"status":false,"color":"pink"},"Bike":{"status":false,"color":"pink"},"Lets":{"status":false,"color":"purple"},"lkjh":{"status":false,"color":"green"}},"9":{"Arm2":{"status":false,"color":"pink"},"Arm3":{"status":false,"color":"green"},"Ballow":{"status":false,"color":"blue"},"New":{"status":false,"color":"pink"},"lkjh":{"status":false,"color":"green"}}}}

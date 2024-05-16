@@ -19,7 +19,10 @@ export default function ExerciseColumn({
     const updatedData: ExerciseData = JSON.parse(JSON.stringify(exerciseData));
     const currentData = updatedData[exerciseIndex];
     if (currentData) {
-      currentData[element] = !currentData[element];
+      let currentElement = currentData[element];
+      if (currentElement) {
+        currentElement.status = !currentElement.status;
+      }
       // Update exerciseData state with the new value
       setExerciseData({ ...updatedData });
     }
@@ -29,11 +32,39 @@ export default function ExerciseColumn({
   const exerciseArray = currentExerciseData
     ? Object.keys(currentExerciseData)
     : [];
+
   const exerciseDisplay = exerciseArray.map((element, index) => {
+    let className = "";
+    let selectedData = currentExerciseData
+      ? currentExerciseData[element]
+      : null;
+    if (selectedData) {
+      switch (selectedData?.color) {
+        case "blue":
+          className = "text-blue-400";
+          break;
+        case "pink":
+          className = " text-pink-300";
+          break;
+        case "green":
+          className = " text-green-300";
+          break;
+        case "purple":
+          className = " text-purple-300";
+          break;
+        default:
+          className = " text-yellow-200";
+      }
+    }
+
     return (
-      <div key={element + "-" + index} onClick={() => updateItem(element)}>
+      <div
+        key={element + "-" + index}
+        onClick={() => updateItem(element)}
+        className={className}
+      >
         {element},{" "}
-        {currentExerciseData && currentExerciseData[element] ? "true" : "false"}
+        {currentExerciseData && selectedData?.status ? "true" : "false"}
       </div>
     );
   });
