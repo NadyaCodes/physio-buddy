@@ -2,25 +2,23 @@
 import { useState } from "react";
 import Link from "next/link";
 import DayList from "../_components/DayList";
-import * as exerciseList from "src/app/helpers/exerciseList.json";
+import exerciseList from "src/app/helpers/exerciseList.json";
+import firstDate from "src/app/helpers/firstDay.json";
 import { calculateDateDifference, createFakeDate } from "../helpers/functions";
 
 export default function Buddy() {
   const [exerciseData, setExerciseData] = useState(exerciseList);
+
+  let currentDate = new Date();
+  currentDate.setHours(0, 0, 0, 0);
+  const originalDate = new Date(firstDate.firstDate);
+  const [startDate, setStartDate] = useState(originalDate);
+  const [dateDifference, setDateDifference] = useState(
+    calculateDateDifference(new Date(originalDate), currentDate),
+  );
   const saveState = () => {
     console.log("saveState");
   };
-
-  // const saveStart = () => {
-  //   const today = new Date();
-  //   const difference = calculateDateDifference(today, today);
-  //   console.log("Difference is: ", difference);
-  // };
-
-  // const makeNewStart = () => {
-  //   const newStart = createFakeDate();
-  //   return newStart;
-  // };
 
   const setStart = async (date: Date) => {
     date.setHours(0, 0, 0, 0);
@@ -30,11 +28,20 @@ export default function Buddy() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(date),
+        body: JSON.stringify({ firstDate: date }),
       });
 
       if (response.ok) {
         console.log("Data saved successfully");
+        if (currentDate === date) {
+          setDateDifference(0);
+        } else {
+          let newDateDifference = calculateDateDifference(
+            startDate,
+            currentDate,
+          );
+          setDateDifference(newDateDifference);
+        }
       } else {
         console.error("Failed to save data");
       }
@@ -50,7 +57,6 @@ export default function Buddy() {
       >
         &#8592; Back
       </Link>
-      {/* <button onClick={saveData}>Save Data</button> */}
       <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
         <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
           I <span className="text-[hsl(280,100%,70%)]">Made</span> This
@@ -63,7 +69,7 @@ export default function Buddy() {
             Save State
           </button>
           <button
-            onClick={() => setStart(new Date())}
+            onClick={() => setStart(currentDate)}
             className="m-3 self-start rounded-lg border-2 border-yellow-400 p-3 text-xl text-yellow-400 transition-all hover:scale-110 hover:shadow-xl hover:shadow-yellow-200"
           >
             Today Start
@@ -74,6 +80,7 @@ export default function Buddy() {
           >
             Reset Start
           </button>
+          {dateDifference}
         </div>
         <DayList
           exerciseData={exerciseData}
