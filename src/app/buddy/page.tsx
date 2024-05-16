@@ -5,9 +5,12 @@ import DayList from "../_components/DayList";
 import exerciseList from "src/app/helpers/exerciseList.json";
 import firstDate from "src/app/helpers/firstDay.json";
 import { calculateDateDifference, createFakeDate } from "../helpers/functions";
+import { ExerciseData } from "../helpers/types";
 
 export default function Buddy() {
-  const [exerciseData, setExerciseData] = useState(exerciseList.exerciseData);
+  const [exerciseData, setExerciseData] = useState(
+    exerciseList.exerciseData as ExerciseData,
+  );
 
   let currentDate = new Date();
   currentDate.setHours(0, 0, 0, 0);
@@ -56,9 +59,6 @@ export default function Buddy() {
             startDate,
             currentDate,
           );
-          alert(
-            `Current Date: ${currentDate}, Date: ${date}, Start Date: ${startDate}, DATE DIFFERENCE: ${newDateDifference}`,
-          );
           setDateDifference(newDateDifference);
         }
       } else {
@@ -72,7 +72,7 @@ export default function Buddy() {
     <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
       <Link
         href="/"
-        className="m-3 self-start rounded-lg border-2 border-yellow-400 p-3 text-3xl text-yellow-400 transition-all hover:scale-110 hover:shadow-xl hover:shadow-yellow-200"
+        className="ellow-400 m-3 self-start rounded-lg border-2 p-3 text-3xl text-yellow-400 transition-all hover:scale-110 hover:shadow-xl hover:shadow-yellow-200"
       >
         &#8592; Back
       </Link>

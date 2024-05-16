@@ -1,11 +1,12 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { daysOfWeek } from "../helpers/helperObjects";
 import DayColumn from "./DayColumn";
+import { ExerciseData } from "../helpers/types";
 
 type DayListProps = {
-  exerciseData: Object;
-  setExerciseData: Function;
+  exerciseData: ExerciseData;
+  setExerciseData: React.Dispatch<React.SetStateAction<ExerciseData>>;
   currentDate: Date;
   dateDifference: number;
 };
@@ -17,28 +18,34 @@ export default function DayList({
   dateDifference,
 }: DayListProps) {
   let currentDay = currentDate.getDay();
-  const dayList = [];
+  const exerciseArray = Object.keys(exerciseData);
 
-  for (let i = 0; i < 7; i++) {
-    if (currentDay === 7) {
-      currentDay = 0;
-    }
-    dayList.push(daysOfWeek[currentDay]);
-    currentDay++;
+  //find first day of week
+  let firstDay = currentDay - dateDifference;
+  while (firstDay < 0) {
+    firstDay += 7;
   }
 
-  const dayDisplay = dayList.map((element, index) => {
-    const exerciseIndex = index + dateDifference;
+  const allDaysDisplay = exerciseArray.map((element) => {
+    let dayToDisplay = firstDay + Number(element);
+    while (dayToDisplay >= 7) {
+      dayToDisplay -= 7;
+    }
+    let columnClass = "m-2 border-2";
+
+    if (dateDifference === Number(element)) {
+      columnClass += " border-yellow-400 rounded-lg";
+    }
     return (
-      <div key={index}>
+      <div key={element} className={columnClass}>
         <DayColumn
-          day={element || "Sunday"}
-          exerciseIndex={exerciseIndex}
+          day={daysOfWeek[dayToDisplay] || "Sunday"}
+          exerciseIndex={Number(element)}
           exerciseData={exerciseData}
           setExerciseData={setExerciseData}
         />
       </div>
     );
   });
-  return <div className="flex flex-row">{dayDisplay}</div>;
+  return <div className="grid grid-cols-5">{allDaysDisplay}</div>;
 }

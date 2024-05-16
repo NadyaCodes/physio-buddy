@@ -1,1 +1,16 @@
-{"exerciseData":{"0":{"Calf":false,"Calf2":false},"1":{"Leg":false},"2":{"Calf":true},"3":{"Leg":true},"4":{"Calf":true},"5":{"Leg":false},"6":{"Calf":false},"7":{"Leg":false},"8":{"Calf":false},"9":{"Leg":false},"10":{"Calf":false},"11":{"Leg":false}}}
+{
+  "exerciseData": {
+    "0": { "Calf": false, "Calf2": false },
+    "1": { "Leg": false },
+    "2": { "Calf": true },
+    "3": { "Leg": true },
+    "4": { "Calf": true },
+    "5": { "Leg": false },
+    "6": { "Calf": false },
+    "7": { "Leg": false },
+    "8": { "Calf": false },
+    "9": { "Leg": false },
+    "10": { "Calf": false },
+    "11": { "Leg": false }
+  }
+}
