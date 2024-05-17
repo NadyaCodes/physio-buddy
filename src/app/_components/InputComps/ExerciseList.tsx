@@ -41,13 +41,18 @@ export default function ExerciseList({
   const exerciseMap = exerciseArray.map((element, index) => {
     return (
       <div
-        className="border-round-sm m-2 flex w-44 justify-between border-2 p-2"
+        className="rounded-smp-2 mb-2 flex items-center justify-between rounded-sm border-2 p-2 "
         key={index}
       >
         {element}
-        <button onClick={() => deleteItem(element)}>Delete</button>
+        <button
+          onClick={() => deleteItem(element)}
+          className="rounded-full p-2 text-pink-400 transition-all hover:scale-105 hover:shadow-md hover:shadow-yellow-100"
+        >
+          Delete
+        </button>
       </div>
     );
   });
-  return <div className="w-72">{exerciseMap}</div>;
+  return <div className="w-40">{exerciseMap}</div>;
 }

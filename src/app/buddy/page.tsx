@@ -15,7 +15,6 @@ export default function Buddy() {
   let currentDate = new Date();
   currentDate.setHours(0, 0, 0, 0);
   const originalDate = new Date(firstDate.firstDate);
-  // const [startDate, setStartDate] = useState(originalDate);
   const [dateDifference, setDateDifference] = useState(
     calculateDateDifference(new Date(originalDate), currentDate),
   );
@@ -53,16 +52,6 @@ export default function Buddy() {
       if (response.ok) {
         console.log("Data saved successfully");
         setDateDifference(0);
-        // setStartDate(date);
-        // if (currentDate === date) {
-        //   setDateDifference(0);
-        // } else if (date !== startDate) {
-        //   let newDateDifference = calculateDateDifference(
-        //     startDate,
-        //     currentDate,
-        //   );
-        //   setDateDifference(newDateDifference);
-        // }
       } else {
         console.error("Failed to save data");
       }
@@ -75,28 +64,27 @@ export default function Buddy() {
     <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
       <Link
         href="/"
-        className="ellow-400 m-3 self-start rounded-lg border-2 p-3 text-3xl text-yellow-400 transition-all hover:scale-110 hover:shadow-xl hover:shadow-yellow-200"
+        className="m-3 self-start rounded-lg border-2 border-yellow-400 p-3 text-3xl text-yellow-400 transition-all hover:scale-110 hover:shadow-md hover:shadow-yellow-200"
       >
         &#8592; Back
       </Link>
-      <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
+      <div className="container flex flex-col items-center justify-center gap-12 px-4">
         <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
           I <span className="text-[hsl(280,100%,70%)]">Made</span> This
         </h1>
         <div>
           <button
             onClick={() => saveState()}
-            className="m-3 self-start rounded-lg border-2 border-yellow-400 p-3 text-xl text-yellow-400 transition-all hover:scale-110 hover:shadow-xl hover:shadow-yellow-200"
+            className="m-3 self-start rounded-lg border-2 border-yellow-400 p-3 text-xl text-yellow-400 transition-all hover:scale-110 hover:shadow-md hover:shadow-yellow-200"
           >
             Save State
           </button>
           <button
             onClick={() => setStart(currentDate)}
-            className="m-3 self-start rounded-lg border-2 border-yellow-400 p-3 text-xl text-yellow-400 transition-all hover:scale-110 hover:shadow-xl hover:shadow-yellow-200"
+            className="m-3 self-start rounded-lg border-2 border-yellow-400 p-3 text-xl text-yellow-400 transition-all hover:scale-110 hover:shadow-md hover:shadow-yellow-200"
           >
             Today Start
           </button>
-          Date Difference: {dateDifference}
         </div>
         <DayList
           exerciseData={exerciseData}

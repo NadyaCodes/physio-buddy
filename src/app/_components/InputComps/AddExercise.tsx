@@ -40,7 +40,7 @@ export default function AddExercise({
   };
 
   return (
-    <div>
+    <div className="-mt-2">
       <div>
         <label
           htmlFor="exercise"
@@ -89,7 +89,7 @@ export default function AddExercise({
         />
         <select
           id="color"
-          className="mb-10 mt-10 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+          className="mb-6 mt-8 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
           onChange={(e) => handleInputChange(e, "color")}
           value={localObject.color}
           required
@@ -100,7 +100,7 @@ export default function AddExercise({
           <option value="green">Green</option>
           <option value="purple">Purple</option>
         </select>
-        <button onClick={handleSubmit} className="m-2 rounded-md border-2 p-2">
+        <button onClick={handleSubmit} className="rounded-md border-2 p-2">
           Add Exercise
         </button>
       </div>

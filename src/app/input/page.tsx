@@ -56,7 +56,7 @@ export default function Input() {
       }
       return (
         <div className={className} key={index}>
-          {exercise}: {ex && ex ? "true" : "false"}
+          {exercise}
         </div>
       );
     });
@@ -72,16 +72,16 @@ export default function Input() {
     <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
       <Link
         href="/"
-        className="ellow-400 m-3 self-start rounded-lg border-2 p-3 text-3xl text-yellow-400 transition-all hover:scale-110 hover:shadow-xl hover:shadow-yellow-200"
+        className="m-3 self-start rounded-lg border-2 border-yellow-400 p-3 text-3xl text-yellow-400 transition-all hover:scale-110 hover:shadow-md hover:shadow-yellow-200"
       >
         &#8592; Back
       </Link>
-      <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
+      <div className="container flex flex-col items-center justify-center gap-12 px-4 ">
         {showSaveCard && <SavedCard />}
         <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
           I <span className="text-[hsl(280,100%,70%)]">Made</span> This
         </h1>
-        <div className="flex">
+        <div className="flex w-7/12 justify-between">
           <ExerciseList
             currentExerciseAlgo={currentExerciseAlgo}
             setCurrentExerciseAlgo={setCurrentExerciseAlgo}
