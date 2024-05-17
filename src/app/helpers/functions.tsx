@@ -9,12 +9,6 @@ export const calculateDateDifference = (startDate: Date, endDate: Date) => {
   return differenceDays;
 };
 
-export const createFakeDate = () => {
-  const startDateString = "2024-05-14";
-  const startDate = new Date(startDateString); // Convert string to Date object
-  return startDate;
-};
-
 export const createList = (list: ExerciseAlgoBase) => {
   const algoList = list || {};
   const exerciseArray = Object.keys(algoList);
@@ -28,7 +22,7 @@ export const createList = (list: ExerciseAlgoBase) => {
         ...finalObject[index],
         [exercise]: { status: false, color },
       };
-      while (index < 10) {
+      while (index <= 40) {
         finalObject[index] = {
           ...finalObject[index],
           [exercise]: { status: false, color },

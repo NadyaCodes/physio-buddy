@@ -34,37 +34,37 @@ export default function ExerciseColumn({
     : [];
 
   const exerciseDisplay = exerciseArray.map((element, index) => {
-    let className = "";
+    let colorClass = "";
     let selectedData = currentExerciseData
       ? currentExerciseData[element]
       : null;
     if (selectedData) {
       switch (selectedData?.color) {
         case "blue":
-          className = "text-blue-400";
+          colorClass = "text-blue-400";
           break;
         case "pink":
-          className = " text-pink-300";
+          colorClass = " text-pink-400";
           break;
         case "green":
-          className = " text-green-300";
+          colorClass = " text-green-400";
           break;
         case "purple":
-          className = " text-purple-300";
+          colorClass = " text-purple-400";
           break;
         default:
-          className = " text-yellow-200";
+          colorClass = " text-yellow-200";
       }
     }
+    let lineClass = selectedData?.status ? "line-through" : "";
 
     return (
       <div
         key={element + "-" + index}
         onClick={() => updateItem(element)}
-        className={className}
+        className={colorClass}
       >
-        {element},{" "}
-        {currentExerciseData && selectedData?.status ? "true" : "false"}
+        <div className={lineClass}>{element}</div>
       </div>
     );
   });

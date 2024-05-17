@@ -21,7 +21,7 @@ export default function DayList({
   const exerciseArray = Object.keys(exerciseData);
 
   //find first day of week
-  let firstDay = currentDay - dateDifference;
+  let firstDay = currentDay - dateDifference - 1;
   while (firstDay < 0) {
     firstDay += 7;
   }
@@ -33,9 +33,10 @@ export default function DayList({
     }
     let columnClass = "m-2 border-2";
 
-    if (dateDifference === Number(element)) {
+    if (dateDifference === Number(element) - 1) {
       columnClass += " border-yellow-400 rounded-lg";
     }
+
     return (
       <div key={index} className={columnClass}>
         <DayColumn
