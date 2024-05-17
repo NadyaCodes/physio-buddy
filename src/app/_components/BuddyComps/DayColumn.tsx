@@ -1,6 +1,6 @@
 import React from "react";
 import ExerciseColumn from "./ExerciseColumn";
-import { ExerciseData } from "../helpers/types";
+import { ExerciseData } from "../../helpers/types";
 
 type DayColumProps = {
   day: String;

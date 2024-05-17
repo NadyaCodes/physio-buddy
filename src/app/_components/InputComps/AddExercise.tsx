@@ -1,21 +1,23 @@
 "use client";
 import React, { useState } from "react";
-import { blankExercise } from "../helpers/helperObjects";
-import { ExerciseAlgoBase, ExerciseData } from "../helpers/types";
-import { createList } from "../helpers/functions";
+import { blankExercise } from "../../helpers/helperObjects";
+import { ExerciseAlgoBase, ExerciseData } from "../../helpers/types";
+import { createList } from "../../helpers/functions";
 
 type AddExerciseProps = {
   currentExerciseAlgo: ExerciseAlgoBase;
   setCurrentExerciseAlgo: React.Dispatch<
     React.SetStateAction<ExerciseAlgoBase>
   >;
-  setExercises: React.Dispatch<React.SetStateAction<ExerciseData>>;
+  setExerciseDataList: React.Dispatch<React.SetStateAction<ExerciseData>>;
+  setExerciseArray: React.Dispatch<React.SetStateAction<string[]>>;
 };
 
 export default function AddExercise({
   currentExerciseAlgo,
   setCurrentExerciseAlgo,
-  setExercises,
+  setExerciseDataList,
+  setExerciseArray,
 }: AddExerciseProps) {
   const [localObject, setLocalObject] = useState(blankExercise);
 
@@ -26,57 +28,15 @@ export default function AddExercise({
     setLocalObject({ ...localObject, [key]: e.target.value });
   };
 
-  const saveExerciseData = async (exerciseAlgo: ExerciseAlgoBase) => {
-    const exerciseData = createList(exerciseAlgo);
-
-    try {
-      const response = await fetch("/api/status/route", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ exerciseData }),
-      });
-
-      if (response.ok) {
-        console.log("Data saved successfully");
-        setExercises(exerciseData);
-        setCurrentExerciseAlgo(exerciseAlgo);
-      } else {
-        console.error("Failed to save data");
-      }
-    } catch (error) {
-      console.error("Error saving data:", error);
-    }
-  };
-
-  const addEx = async (exerciseAlgo: ExerciseAlgoBase) => {
-    try {
-      const response = await fetch("/api/algo/route", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ exerciseAlgo }),
-      });
-
-      if (response.ok) {
-        console.log("Data saved successfully");
-
-        saveExerciseData(exerciseAlgo);
-      } else {
-        console.error("Failed to save data");
-      }
-    } catch (error) {
-      console.error("Error saving data:", error);
-    }
-  };
-
   const handleSubmit = () => {
     const exerciseAlgo = JSON.parse(JSON.stringify(currentExerciseAlgo));
     exerciseAlgo[localObject.exercise] = localObject;
     setLocalObject(blankExercise);
-    addEx(exerciseAlgo);
+    setCurrentExerciseAlgo(exerciseAlgo);
+    const newExerciseArray = Object.keys(exerciseAlgo);
+    setExerciseArray(newExerciseArray);
+    const newExerciseData = createList(exerciseAlgo);
+    setExerciseDataList(newExerciseData);
   };
 
   return (
@@ -93,6 +53,7 @@ export default function AddExercise({
           id="exercise"
           className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
           placeholder="Calf Raise"
+          value={localObject.exercise}
           required
           onChange={(e) => handleInputChange(e, "exercise")}
         />
@@ -107,6 +68,7 @@ export default function AddExercise({
           id="frequency"
           className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
           placeholder="1"
+          value={localObject.frequency}
           required
           onChange={(e) => handleInputChange(e, "frequency")}
         />
@@ -122,11 +84,12 @@ export default function AddExercise({
           className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
           placeholder="1"
           required
+          value={localObject.start}
           onChange={(e) => handleInputChange(e, "start")}
         />
         <select
           id="color"
-          className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+          className="mb-10 mt-10 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
           onChange={(e) => handleInputChange(e, "color")}
           value={localObject.color}
           required

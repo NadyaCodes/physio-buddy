@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import type { ExerciseData } from "../helpers/types";
+import type { ExerciseData } from "../../helpers/types";
 
 type ExerciseColumnProps = {
   exerciseData: ExerciseData;

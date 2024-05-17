@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import DayList from "../_components/DayList";
+import DayList from "../_components/BuddyComps/DayList";
 import exerciseList from "src/app/helpers/exerciseList.json";
 import firstDate from "src/app/helpers/firstDay.json";
 import { calculateDateDifference, createFakeDate } from "../helpers/functions";

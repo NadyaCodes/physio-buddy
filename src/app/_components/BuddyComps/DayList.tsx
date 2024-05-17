@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
-import { daysOfWeek } from "../helpers/helperObjects";
+import { daysOfWeek } from "../../helpers/helperObjects";
 import DayColumn from "./DayColumn";
-import { ExerciseData } from "../helpers/types";
+import { ExerciseData } from "../../helpers/types";
 
 type DayListProps = {
   exerciseData: ExerciseData;
@@ -26,7 +26,7 @@ export default function DayList({
     firstDay += 7;
   }
 
-  const allDaysDisplay = exerciseArray.map((element) => {
+  const allDaysDisplay = exerciseArray.map((element, index) => {
     let dayToDisplay = firstDay + Number(element);
     while (dayToDisplay >= 7) {
       dayToDisplay -= 7;
@@ -37,7 +37,7 @@ export default function DayList({
       columnClass += " border-yellow-400 rounded-lg";
     }
     return (
-      <div key={element} className={columnClass}>
+      <div key={index} className={columnClass}>
         <DayColumn
           day={daysOfWeek[dayToDisplay] || "Sunday"}
           exerciseIndex={Number(element)}

@@ -3,27 +3,38 @@ import Link from "next/link";
 import { useState } from "react";
 import exerciseList from "src/app/helpers/exerciseList.json";
 import { ExerciseAlgoBase, ExerciseData } from "../helpers/types";
-import AddExercise from "../_components/AddExercise";
+import AddExercise from "../_components/InputComps/AddExercise";
 import originalExerciseAlgo from "src/app/helpers/exerciseAlgo.json";
+import ExerciseList from "../_components/InputComps/ExerciseList";
+import Save from "../_components/InputComps/Save";
+import SavedCard from "../_components/InputComps/SavedCard";
 
-export default function Buddy() {
-  const [exercises, setExercises] = useState(
+export default function Input() {
+  const [exerciseDataList, setExerciseDataList] = useState(
     exerciseList.exerciseData as ExerciseData,
   );
+
   const [currentExerciseAlgo, setCurrentExerciseAlgo] = useState(
     originalExerciseAlgo.exerciseAlgo as ExerciseAlgoBase,
   );
-  const idArray = Object.keys(exercises);
 
-  const exerciseDisplay = idArray.map((id) => {
-    const exerciseObject = exercises[id] || {};
+  const [exerciseArray, setExerciseArray] = useState(
+    Object.keys(originalExerciseAlgo.exerciseAlgo as ExerciseAlgoBase),
+  );
+
+  const [showSaveCard, setShowSaveCard] = useState(false);
+
+  const idArray = Object.keys(exerciseDataList);
+
+  const exerciseDisplay = idArray.map((id, index) => {
+    const exerciseObject = exerciseDataList[id] || {};
     const exerciseList = Object.keys(exerciseObject);
-    const displayArray = exerciseList.map((exercise) => {
+    const displayArray = exerciseList.map((exercise, index) => {
       let ex;
       let className = "";
       let object = exerciseObject[exercise];
 
-      if (exercises && id && exerciseObject && object !== undefined) {
+      if (exerciseDataList && id && exerciseObject && object !== undefined) {
         ex = object?.status ? true : false;
 
         switch (object?.color) {
@@ -44,13 +55,13 @@ export default function Buddy() {
         }
       }
       return (
-        <div className={className}>
+        <div className={className} key={index}>
           {exercise}: {ex && ex ? "true" : "false"}
         </div>
       );
     });
     return (
-      <div className="m-2 flex flex-col rounded-sm border-2 p-2">
+      <div className="m-2 flex flex-col rounded-sm border-2 p-2" key={index}>
         <div>Day: {id}</div>
         {displayArray}
       </div>
@@ -66,14 +77,30 @@ export default function Buddy() {
         &#8592; Back
       </Link>
       <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
+        {showSaveCard && <SavedCard />}
         <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
           I <span className="text-[hsl(280,100%,70%)]">Made</span> This
         </h1>
-        <AddExercise
-          setCurrentExerciseAlgo={setCurrentExerciseAlgo}
-          currentExerciseAlgo={currentExerciseAlgo}
-          setExercises={setExercises}
-        />
+        <div className="flex">
+          <ExerciseList
+            currentExerciseAlgo={currentExerciseAlgo}
+            setCurrentExerciseAlgo={setCurrentExerciseAlgo}
+            setExerciseDataList={setExerciseDataList}
+            exerciseArray={exerciseArray}
+            setExerciseArray={setExerciseArray}
+          />
+          <AddExercise
+            currentExerciseAlgo={currentExerciseAlgo}
+            setCurrentExerciseAlgo={setCurrentExerciseAlgo}
+            setExerciseDataList={setExerciseDataList}
+            setExerciseArray={setExerciseArray}
+          />
+          <Save
+            exerciseDataList={exerciseDataList}
+            exerciseAlgo={currentExerciseAlgo}
+            setShowSaveCard={setShowSaveCard}
+          />
+        </div>
         <div className="grid grid-cols-7">{exerciseDisplay}</div>
       </div>
     </main>
