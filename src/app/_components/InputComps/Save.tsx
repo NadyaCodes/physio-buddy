@@ -53,7 +53,7 @@ export default function Save({
 
   return (
     <div
-      className="self-start rounded-lg border-2 border-yellow-400 p-6 pb-10 pt-10 text-2xl text-yellow-400 transition-all hover:scale-110 hover:shadow-md hover:shadow-yellow-200"
+      className="self-start rounded-lg border-4 border-yellow-400 p-10 text-3xl font-extrabold text-yellow-400 transition-all hover:scale-110 hover:shadow-md hover:shadow-yellow-200"
       onClick={saveData}
     >
       Save

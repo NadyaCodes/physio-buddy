@@ -81,7 +81,7 @@ export default function Input() {
         <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
           I <span className="text-[hsl(280,100%,70%)]">Made</span> This
         </h1>
-        <div className="flex w-7/12 justify-between">
+        <div className="flex w-full justify-between">
           <ExerciseList
             currentExerciseAlgo={currentExerciseAlgo}
             setCurrentExerciseAlgo={setCurrentExerciseAlgo}
@@ -89,17 +89,19 @@ export default function Input() {
             exerciseArray={exerciseArray}
             setExerciseArray={setExerciseArray}
           />
-          <AddExercise
-            currentExerciseAlgo={currentExerciseAlgo}
-            setCurrentExerciseAlgo={setCurrentExerciseAlgo}
-            setExerciseDataList={setExerciseDataList}
-            setExerciseArray={setExerciseArray}
-          />
-          <Save
-            exerciseDataList={exerciseDataList}
-            exerciseAlgo={currentExerciseAlgo}
-            setShowSaveCard={setShowSaveCard}
-          />
+          <div className="flex w-1/2 flex-row justify-around">
+            <AddExercise
+              currentExerciseAlgo={currentExerciseAlgo}
+              setCurrentExerciseAlgo={setCurrentExerciseAlgo}
+              setExerciseDataList={setExerciseDataList}
+              setExerciseArray={setExerciseArray}
+            />
+            <Save
+              exerciseDataList={exerciseDataList}
+              exerciseAlgo={currentExerciseAlgo}
+              setShowSaveCard={setShowSaveCard}
+            />
+          </div>
         </div>
         <div className="grid grid-cols-7">{exerciseDisplay}</div>
       </div>

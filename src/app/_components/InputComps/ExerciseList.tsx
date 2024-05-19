@@ -41,7 +41,7 @@ export default function ExerciseList({
   const exerciseMap = exerciseArray.map((element, index) => {
     return (
       <div
-        className="rounded-smp-2 mb-2 flex items-center justify-between rounded-sm border-2 p-2 "
+        className="rounded-smp-2 m-2 flex h-16 items-center justify-between rounded-sm border-2 p-2 "
         key={index}
       >
         {element}
@@ -54,5 +54,7 @@ export default function ExerciseList({
       </div>
     );
   });
-  return <div className="w-40">{exerciseMap}</div>;
+  return (
+    <div className="m-3 grid grid-cols-3 border-4 p-3 ">{exerciseMap}</div>
+  );
 }
