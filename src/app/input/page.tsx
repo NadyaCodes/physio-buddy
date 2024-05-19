@@ -50,6 +50,9 @@ export default function Input() {
           case "purple":
             className = " text-purple-300";
             break;
+          case "yellow":
+            className = " text-yellow-200";
+            break;
           default:
             className = " text-yellow-200";
         }

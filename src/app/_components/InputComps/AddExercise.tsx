@@ -99,6 +99,7 @@ export default function AddExercise({
           <option value="blue">Blue</option>
           <option value="green">Green</option>
           <option value="purple">Purple</option>
+          <option value="yellow">Yellow</option>
         </select>
         <button onClick={handleSubmit} className="rounded-md border-2 p-2">
           Add Exercise

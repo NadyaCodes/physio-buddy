@@ -52,6 +52,9 @@ export default function ExerciseColumn({
         case "purple":
           colorClass = " text-purple-400";
           break;
+        case "yellow":
+          colorClass = " text-yellow-200";
+          break;
         default:
           colorClass = " text-yellow-200";
       }
