@@ -82,8 +82,14 @@ export default function Input() {
       <div className="container flex flex-col items-center justify-center gap-12 px-4 ">
         {showSaveCard && <SavedCard />}
         <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
-          I <span className="text-[hsl(280,100%,70%)]">Made</span> This
+          Exercise <span className="text-[hsl(280,100%,70%)]">Input</span> 🤓
         </h1>
+        <Link
+          href="/buddy"
+          className="m-3 rounded-lg border-2 border-pink-400 p-3 text-3xl text-pink-400 transition-all hover:scale-110 hover:shadow-md hover:shadow-pink-200"
+        >
+          Buddy
+        </Link>
         <div className="flex w-full justify-between">
           <ExerciseList
             currentExerciseAlgo={currentExerciseAlgo}
