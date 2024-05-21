@@ -14,3 +14,5 @@ export const blankExercise = {
   start: 1,
   color: "",
 };
+
+export const colorList = ["pink", "green", "blue", "purple", "yellow"];

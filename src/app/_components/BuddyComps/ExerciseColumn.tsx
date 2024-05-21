@@ -2,6 +2,8 @@
 
 import React from "react";
 import type { ExerciseData } from "../../helpers/types";
+import { colorSwitch } from "~/app/helpers/functions";
+import { colorList } from "~/app/helpers/helperObjects";
 
 type ExerciseColumnProps = {
   exerciseData: ExerciseData;
@@ -33,34 +35,12 @@ export default function ExerciseColumn({
     ? Object.keys(currentExerciseData)
     : [];
 
-  const exerciseDisplay = exerciseArray.map((element, index) => {
-    let colorClass = "";
-    let selectedData = currentExerciseData
-      ? currentExerciseData[element]
-      : null;
-    if (selectedData) {
-      switch (selectedData?.color) {
-        case "blue":
-          colorClass = "text-blue-400";
-          break;
-        case "pink":
-          colorClass = " text-pink-400";
-          break;
-        case "green":
-          colorClass = " text-green-400";
-          break;
-        case "purple":
-          colorClass = " text-purple-400";
-          break;
-        case "yellow":
-          colorClass = " text-yellow-200";
-          break;
-        default:
-          colorClass = " text-yellow-200";
-      }
-    }
-    let lineClass = selectedData?.status ? "line-through" : "";
-
+  const ExerciseItem = (
+    element: string,
+    index: number,
+    colorClass: string,
+    lineClass: string,
+  ) => {
     return (
       <div
         key={element + "-" + index}
@@ -70,6 +50,32 @@ export default function ExerciseColumn({
         <div className={lineClass}>{element}</div>
       </div>
     );
+  };
+
+  const orderedExercises = colorList.map((color) => {
+    if (currentExerciseData) {
+      const allOfColor = exerciseArray.filter(
+        (exercise) => currentExerciseData[exercise]?.color === color,
+      );
+      return allOfColor;
+    }
+  });
+
+  let orderedExerciseArray = orderedExercises.flat();
+
+  const exerciseDisplay = orderedExerciseArray.map((element, index) => {
+    if (element) {
+      let colorClass = "";
+      let selectedData = currentExerciseData
+        ? currentExerciseData[element]
+        : null;
+      if (selectedData) {
+        colorClass = colorSwitch(selectedData?.color);
+      }
+      let lineClass = selectedData?.status ? "line-through" : "";
+
+      return ExerciseItem(element, index, colorClass, lineClass);
+    }
   });
 
   return <div className="flex flex-col">{exerciseDisplay}</div>;

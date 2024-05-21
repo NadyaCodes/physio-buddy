@@ -34,3 +34,20 @@ export const createList = (list: ExerciseAlgoBase) => {
   console.log("finalObject: ", finalObject);
   return finalObject;
 };
+
+export const colorSwitch = (color: string) => {
+  switch (color) {
+    case "blue":
+      return " text-blue-400";
+    case "pink":
+      return " text-pink-400";
+    case "green":
+      return " text-green-400";
+    case "purple":
+      return " text-purple-400";
+    case "yellow":
+      return " text-yellow-200";
+    default:
+      return " text-yellow-200";
+  }
+};

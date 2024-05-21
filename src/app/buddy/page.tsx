@@ -70,8 +70,9 @@ export default function Buddy() {
       </Link>
       <div className="container flex flex-col items-center justify-center gap-12 px-4">
         <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
-          I <span className="text-[hsl(280,100%,70%)]">Made</span> This
+          You <span className="text-[hsl(280,100%,70%)]">GOT</span> This
         </h1>
+        <div className="text-2xl">...maybe...</div>
         <div>
           <button
             onClick={() => saveState()}

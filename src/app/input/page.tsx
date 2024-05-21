@@ -8,6 +8,7 @@ import originalExerciseAlgo from "src/app/helpers/exerciseAlgo.json";
 import ExerciseList from "../_components/InputComps/ExerciseList";
 import Save from "../_components/InputComps/Save";
 import SavedCard from "../_components/InputComps/SavedCard";
+import { colorSwitch } from "../helpers/functions";
 
 export default function Input() {
   const [exerciseDataList, setExerciseDataList] = useState(
@@ -31,31 +32,12 @@ export default function Input() {
     const exerciseList = Object.keys(exerciseObject);
     const displayArray = exerciseList.map((exercise, index) => {
       let ex;
-      let className = "";
       let object = exerciseObject[exercise];
+      let className = "";
 
       if (exerciseDataList && id && exerciseObject && object !== undefined) {
         ex = object?.status ? true : false;
-
-        switch (object?.color) {
-          case "blue":
-            className = "text-blue-400";
-            break;
-          case "pink":
-            className = " text-pink-300";
-            break;
-          case "green":
-            className = " text-green-300";
-            break;
-          case "purple":
-            className = " text-purple-300";
-            break;
-          case "yellow":
-            className = " text-yellow-200";
-            break;
-          default:
-            className = " text-yellow-200";
-        }
+        className = colorSwitch(object?.color);
       }
       return (
         <div className={className} key={index}>
